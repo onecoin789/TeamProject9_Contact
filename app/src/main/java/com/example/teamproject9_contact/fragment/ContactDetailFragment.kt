@@ -41,8 +41,6 @@ class ContactDetailFragment : Fragment() {
 //
 //        }
 
-
-
         return binding.root
     }
 

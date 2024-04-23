@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
+import com.example.teamproject9_contact.fragment.ContactDetailFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
@@ -94,8 +95,10 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         // 연락처 추가 시 처리할 부분
     }
 
-    override fun onDataReceived(infoData: Contact) {
-//        TODO("Not yet implemented")
+    override fun onDataReceived(infoData: Contact) = with(binding) {
+        vpMain.currentItem = 1
+        if(vpMain.adapter is MainViewPagerAdapter)
+                (vpMain.adapter as MainViewPagerAdapter).setFragment(ContactDetailFragment.newInstance(infoData), 1)
     }
 
 //    private fun setFragment(fragment: Fragment) {
