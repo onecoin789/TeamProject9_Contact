@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import androidx.viewpager2.widget.ViewPager2
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -84,4 +84,10 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onContactAdd(contact: Contacts) {
+        // 연락처 추가 시 처리할 부분
+    }
+
+
 }
