@@ -8,10 +8,14 @@ import com.example.teamproject9_contact.fragment.ContactListFragment
 
 class MainViewPagerAdapter(fm: FragmentActivity) :
     FragmentStateAdapter(fm) {
-    private val fragments = listOf<Fragment>(
+    private var fragments = mutableListOf<Fragment>(
         ContactListFragment(),
         ContactDetailFragment()
     )
+
+    fun setFragment(fragment: Fragment, position: Int){
+        fragments[position] = fragment
+    }
 
     override fun getItemCount(): Int {
         return 2
