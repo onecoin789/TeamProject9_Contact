@@ -1,19 +1,18 @@
 package com.example.teamproject9_contact
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.core.content.ContextCompat
-import androidx.viewpager.widget.ViewPager
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import androidx.viewpager2.widget.ViewPager2
 
-
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
+  {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUi()
+//        setFragment(ContactListFragment())
     }
 
     private fun setUi() {
@@ -84,4 +84,21 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    
+    override fun onContactAdd(contact: Contacts) {
+        // 연락처 추가 시 처리할 부분
+    }
+
+    override fun onDataReceived(infoData: DataClass) {
+        TODO("Not yet implemented")
+    }
+
+//    private fun setFragment(fragment: Fragment) {
+//        supportFragmentManager.commit {
+//            replace(R.id.layout_fragment, fragment)
+//            setReorderingAllowed(true)
+//            addToBackStack("")
+//        }
+//    }
+
 }

@@ -11,8 +11,8 @@ class MainViewPagerAdapter(fm: FragmentActivity):
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-//            0 ->{  }
+        return when (position) {
+            0 -> { ContactListFragment() }
             1 ->{ MyPageFragment() }
             else -> {
                 return BlankFragment()
