@@ -78,12 +78,18 @@ class ContactListFragment : Fragment() {
         }
 
 //        클릭 동작 수행
-//        adapter.click = object : ContactListAdapter.Click {
-//            override fun clicked(view: View, position: Int) {
-//                val selectedData = userInfoData[position]
-//                listener?.onDataReceived(selectedData)
-//            }
-//        }
+        adapter.click = object : ContactListAdapter.Click {
+            override fun clicked(view: View, position: Int) {
+                val selectedData = userInfoData[position]
+                listener?.onDataReceived(selectedData)
+
+//                val fragment = ContactDetailFragment.newInstance()
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .replace(R.id.frame, fragment)
+//                    .addToBackStack(null)
+//                    .commit()
+            }
+        }
     }
 
     // 데이터 초기화
