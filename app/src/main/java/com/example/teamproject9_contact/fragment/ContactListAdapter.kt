@@ -1,12 +1,10 @@
-package com.example.teamproject9_contact
+package com.example.teamproject9_contact.fragment
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.databinding.LayoutContactListDefBinding
 import java.lang.RuntimeException
 
@@ -42,7 +40,6 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
             holder.layout.setOnClickListener {
                 click?.clicked(it, position)
             }
-            holder.setBg()
 //            holder.bind(contactList[position])
         } else {
             throw RuntimeException("알 수 없는 뷰 타입")
@@ -74,7 +71,7 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
     inner class ViewHolderBg(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-        fun bind(info: DataClass) {
+        fun bind(info: Contact) {
 //            val priceContext = binding.tvPrice.context
 //            binding.ivProductImg.setImageResource(info.image)
         }

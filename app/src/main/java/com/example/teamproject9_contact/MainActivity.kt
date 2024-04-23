@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         setContentView(binding.root)
 
         setUi()
-//        addContact()
+        addContact()
     }
 
     private fun addContact(){
