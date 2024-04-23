@@ -5,14 +5,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.core.content.ContextCompat
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
-  {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
