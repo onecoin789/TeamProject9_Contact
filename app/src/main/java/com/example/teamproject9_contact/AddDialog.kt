@@ -26,7 +26,7 @@ class AddDialog: DialogFragment() {
     private lateinit var pictureLauncher: ActivityResultLauncher<Intent>
 
     interface AddDialogListener {
-        fun onContactAdd(contact: Contacts)
+        fun onContactAdd(contact: Contact)
     }
 
     override fun onAttach(context: Context) {
@@ -146,7 +146,7 @@ class AddDialog: DialogFragment() {
                 val email = dialogEmail.text.toString()
                 val imgResource = R.drawable.dialog_circle
 
-                val contact = Contacts(name, phone, email, imgResource, false)
+                val contact = Contact(name, phone, email, imgResource, false)
                 listener.onContactAdd(contact)
                 dismiss()
             }
