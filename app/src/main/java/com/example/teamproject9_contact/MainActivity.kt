@@ -11,9 +11,8 @@ import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import androidx.viewpager2.widget.ViewPager2
 
-
-class MainActivity : AppCompatActivity(), FragmentDataListener {
-
+class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
+  {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,6 +83,10 @@ class MainActivity : AppCompatActivity(), FragmentDataListener {
             R.id.toolbar_gridView -> {}
         }
         return super.onOptionsItemSelected(item)
+    }
+    
+    override fun onContactAdd(contact: Contacts) {
+        // 연락처 추가 시 처리할 부분
     }
 
     override fun onDataReceived(infoData: DataClass) {
