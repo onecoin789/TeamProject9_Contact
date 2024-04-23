@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
     }
 
     override fun onDataReceived(infoData: DataClass) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
 //    private fun setFragment(fragment: Fragment) {
