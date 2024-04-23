@@ -54,6 +54,7 @@ class ContactDetailFragment : Fragment() {
         return binding.root
     }
 
+
     companion object {
 
         @JvmStatic
@@ -67,4 +68,5 @@ class ContactDetailFragment : Fragment() {
 
 
     }
+
 }

@@ -12,8 +12,8 @@ class MainViewPagerAdapter(fm: FragmentActivity):
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-//            0 ->{ }
-//            1 ->{ }
+//            0 ->{  }
+            1 ->{ MyPageFragment() }
             else -> {
                 return BlankFragment()
 //                throw IllegalArgumentException("Fragment does not exist")

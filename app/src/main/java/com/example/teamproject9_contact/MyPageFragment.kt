@@ -76,7 +76,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun floatingButton() {
-        var intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+"01000000000"))
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+"${phoneNumber}"))
         startActivity(intent)
     }
 }
