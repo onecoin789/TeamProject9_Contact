@@ -13,7 +13,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
@@ -27,7 +26,7 @@ class AddDialog: DialogFragment() {
     private lateinit var pictureLauncher: ActivityResultLauncher<Intent>
 
     interface AddDialogListener {
-        fun onContactAdd(contact: Contacts)
+        fun onContactAdd(contact: Contact)
     }
 
     override fun onAttach(context: Context) {
@@ -57,10 +56,6 @@ class AddDialog: DialogFragment() {
                 }
             }
 
-        var nameCheck: Boolean? = null
-        var emailCheck: Boolean? = null
-        var numberCheck: Boolean? = null
-
         _binding?.apply {
             // 이미지 추가
             dialogImg.setOnClickListener {
@@ -87,11 +82,9 @@ class AddDialog: DialogFragment() {
 
                     if(english.matches(dialogName.text) || korean.matches(dialogName.text)) {
                         dialogName.error = null
-                        nameCheck = true
                     }
                     else {
                         dialogName.error = "이름을 2글자 이상 입력하세요"
-                        nameCheck = false
                     }
                 }
             })
@@ -114,11 +107,9 @@ class AddDialog: DialogFragment() {
 
                     if(email.matches(dialogEmail.text)) {
                         dialogEmail.error = null
-                        emailCheck = true
                     }
                     else {
                         dialogEmail.error = "올바른 이메일 형식으로 입력하세요"
-                        emailCheck = false
                     }
                 }
             })
@@ -141,29 +132,23 @@ class AddDialog: DialogFragment() {
 
                     if(phoneNumber.matches(dialogPhoneNumber.text)) {
                         dialogPhoneNumber.error = null
-                        numberCheck = true
                     }
                     else {
                         dialogPhoneNumber.error = "올바른 전화번호 형식으로 입력하세요"
-                        numberCheck = false
                     }
                 }
             })
 
             // 확인 버튼 클릭
             dialogConfirmButton.setOnClickListener {
-                if (nameCheck == false || emailCheck == false || numberCheck == false) {
-                    Toast.makeText(context, "모든 항목을 형식에 맞게 입력해 주세요", Toast.LENGTH_SHORT).show()
-                } else {
-                    val name = dialogName.text.toString()
-                    val phone = dialogPhoneNumber.text.toString()
-                    val email = dialogEmail.text.toString()
-                    val imgResource = R.drawable.dialog_circle
+                val name = dialogName.text.toString()
+                val phone = dialogPhoneNumber.text.toString()
+                val email = dialogEmail.text.toString()
+                val imgResource = R.drawable.dialog_circle
 
-                    val contact = Contacts(name, phone, email, imgResource, false)
-                    listener.onContactAdd(contact)
-                    dismiss()
-                }
+                val contact = Contact(name, phone, email, imgResource, false)
+                listener.onContactAdd(contact)
+                dismiss()
             }
 
             // 취소 버튼 클릭
