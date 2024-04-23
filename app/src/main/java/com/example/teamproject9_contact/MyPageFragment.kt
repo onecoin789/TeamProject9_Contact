@@ -16,13 +16,6 @@ private const val ARG_PARAM2 = "param2"
 
 class MyPageFragment : Fragment() {
 
-    private var image: Int? = null
-    private var name: String? = null
-    private var phoneNumber: String? = null
-    private var eMail: String? = null
-
-
-
     private var param1: String? = null
     private var param2: String? = null
 
@@ -34,10 +27,6 @@ class MyPageFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
 
-//            image = it.getInt("")
-//            name = it.getString("")
-//            phoneNumber = it.getString("")
-//            eMail = it.getString("")
         }
     }
 
@@ -48,15 +37,9 @@ class MyPageFragment : Fragment() {
        binding = FragmentMyPageBinding.inflate(inflater)
 
 
-//        데이터 입력
-//        arguments?.let { binding.imgMyPageTitle.setImageResource(it.getInt("")) }
-//        binding.textMyPageName.text = arguments?.getString("")
-//        binding.textMyPagePhoneNumber.text = arguments?.getString("")
-//        binding.textMyPageEmail.text = arguments?.getString("")
-
-        binding.btnMyPage.setOnClickListener {
-            floatingButton()
-        }
+//        binding.btnMyPage.setOnClickListener {
+//            floatingButton()
+//        }
 
 
 
@@ -76,7 +59,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun floatingButton() {
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+"${phoneNumber}"))
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+"01012345678"))
         startActivity(intent)
     }
 }
