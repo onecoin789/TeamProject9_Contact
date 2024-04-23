@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
-  {
+
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

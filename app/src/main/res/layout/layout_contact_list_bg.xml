@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout1"
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/petal_light"
@@ -18,7 +18,7 @@
             android:id="@+id/iv_profile_img"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:background="@drawable/img_contactfrag_profile"
+            android:background="@drawable/bg_contactfrag_trim"
             android:clipToOutline="true"
             android:scaleType="centerCrop"
             android:src="@drawable/img_contactfrag_profile"
