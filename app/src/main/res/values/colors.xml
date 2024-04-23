@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="silver">#CCD3D9</color>
     <color name="petal">#FED5D9</color>
+    <color name="petal_light">#66FED5D9</color>
     <color name="blossom">#7E212C</color>
     <color name="bark">#321E17</color>
 </resources>
