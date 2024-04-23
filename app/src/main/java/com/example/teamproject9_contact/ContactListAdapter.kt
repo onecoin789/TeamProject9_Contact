@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.databinding.LayoutContactListDefBinding
 import java.lang.RuntimeException
 
-class ContactListAdapter(private val contactList: MutableList<DataClass>) :
+class ContactListAdapter(private val contactList: MutableList<Contact>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface Click {
@@ -65,7 +65,7 @@ class ContactListAdapter(private val contactList: MutableList<DataClass>) :
     inner class ViewHolderDef(binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-        fun bind(info: DataClass) {
+        fun bind(info: Contact) {
 //            val priceContext = binding.tvPrice.context
 //            binding.ivProductImg.setImageResource(info.image)
         }
@@ -74,9 +74,6 @@ class ContactListAdapter(private val contactList: MutableList<DataClass>) :
     inner class ViewHolderBg(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-        fun setBg() {
-            binding.layout.setBackgroundColor(ContextCompat.getColor(binding.layout.context, R.color.petal_light))
-        }
         fun bind(info: DataClass) {
 //            val priceContext = binding.tvPrice.context
 //            binding.ivProductImg.setImageResource(info.image)

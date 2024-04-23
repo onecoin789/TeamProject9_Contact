@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
 
@@ -20,9 +18,16 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         setContentView(binding.root)
 
         setUi()
-//        setFragment(ContactListFragment())
+//        addContact()
     }
 
+    private fun addContact(){
+        binding.ivBtnMultifunctional.setOnClickListener {
+            val fragmentManager = supportFragmentManager
+            val addDialog = AddDialog()
+            addDialog.show(fragmentManager, "AddDialog")
+        }
+    }
     private fun setUi() {
         setToolbarUi()
         setViewPagerTabLayoutUi()
@@ -85,11 +90,11 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         return super.onOptionsItemSelected(item)
     }
     
-    override fun onContactAdd(contact: Contacts) {
+    override fun onContactAdd(contact: Contact) {
         // 연락처 추가 시 처리할 부분
     }
 
-    override fun onDataReceived(infoData: DataClass) {
+    override fun onDataReceived(infoData: Contact) {
 //        TODO("Not yet implemented")
     }
 
