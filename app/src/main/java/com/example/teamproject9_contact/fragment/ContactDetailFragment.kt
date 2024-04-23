@@ -1,21 +1,12 @@
-package com.example.teamproject9_contact
+package com.example.teamproject9_contact.fragment
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.content.Intent.ACTION_DIAL
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.databinding.FragmentContactDetailBinding
-import java.lang.Exception
-
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-
 
 class ContactDetailFragment : Fragment() {
     //    private val myContact: Contact? = null

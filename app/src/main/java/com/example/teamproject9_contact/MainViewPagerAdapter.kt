@@ -3,6 +3,8 @@ package com.example.teamproject9_contact
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.teamproject9_contact.fragment.ContactDetailFragment
+import com.example.teamproject9_contact.fragment.ContactListFragment
 
 class MainViewPagerAdapter(fm: FragmentActivity) :
     FragmentStateAdapter(fm) {

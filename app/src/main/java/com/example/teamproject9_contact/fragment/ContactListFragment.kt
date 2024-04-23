@@ -1,14 +1,15 @@
-package com.example.teamproject9_contact
+package com.example.teamproject9_contact.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamproject9_contact.FragmentDataListener
 import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.FragmentContactListBinding
 import java.lang.RuntimeException
