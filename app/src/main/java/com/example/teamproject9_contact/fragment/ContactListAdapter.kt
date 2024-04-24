@@ -35,12 +35,12 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
             holder.layout.setOnClickListener {
                 click?.clicked(it, position)
             }
-//            holder.bind(contactList[position])
+            holder.bind(contactList[position])
         } else if (holder is ViewHolderBg) {
             holder.layout.setOnClickListener {
                 click?.clicked(it, position)
             }
-//            holder.bind(contactList[position])
+            holder.bind(contactList[position])
         } else {
             throw RuntimeException("알 수 없는 뷰 타입")
         }
@@ -56,15 +56,17 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
     }
 
     override fun getItemCount(): Int {
-        return 10 //contactList.size
+        return contactList.size
     }
 
-    inner class ViewHolderDef(binding: LayoutContactListDefBinding) :
+    inner class ViewHolderDef(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
         fun bind(info: Contact) {
-//            val priceContext = binding.tvPrice.context
-//            binding.ivProductImg.setImageResource(info.image)
+            binding.tvName.text = info.name
+            binding.tvAddress.text = info.phoneNum
+            val bookMark = binding.ivLike
+            binding.ivProfileImg.setImageResource(info.imgResource)
         }
     }
 
@@ -72,8 +74,10 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
         fun bind(info: Contact) {
-//            val priceContext = binding.tvPrice.context
-//            binding.ivProductImg.setImageResource(info.image)
+            binding.tvName.text = info.name
+            binding.tvAddress.text = info.phoneNum
+            val bookMark = binding.ivLike
+            binding.ivProfileImg.setImageResource(info.imgResource)
         }
     }
 
