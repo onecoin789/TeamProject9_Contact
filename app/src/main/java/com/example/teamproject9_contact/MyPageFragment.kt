@@ -19,7 +19,7 @@ class MyPageFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-   lateinit var binding: FragmentMyPageBinding
+    private lateinit var binding: FragmentMyPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MyPageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
        binding = FragmentMyPageBinding.inflate(inflater)
 
 

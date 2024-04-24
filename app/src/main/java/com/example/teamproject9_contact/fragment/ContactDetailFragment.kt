@@ -14,11 +14,10 @@ class ContactDetailFragment : Fragment() {
     private var param1: Contact? = null
 
 
-    lateinit var binding: FragmentContactDetailBinding
+    private lateinit var binding: FragmentContactDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         arguments?.let {
             param1 = it.getParcelable(ARG_PARAM1)
@@ -28,12 +27,13 @@ class ContactDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentContactDetailBinding.inflate(inflater)
 
 
 //        데이터 키값넣기
-        arguments?.let { binding.imgDetailTitle.setImageResource(param1!!.imgResource) }
+//        arguments?.let { binding.imgDetailTitle.setImageResource(param1!!.imgResource) }
+        binding.imgDetailTitle.setImageResource(param1!!.imgResource)
         binding.textDetailName.text = param1?.name
         binding.textDetailPhoneNumber.text = param1?.phoneNum
         binding.textDetailEmail.text = param1?.email

@@ -6,4 +6,9 @@
     <string name="이벤트">이벤트</string>
     <string name="취소">취소</string>
     <string name="확인">확인</string>
+
+    <string name="name_1">아이유</string>
+    <string name="phonen_num_1">010-1111-1111</string>
+    <string name="email_1">iulove@naver.com</string>
+
 </resources>

@@ -22,6 +22,12 @@ class MainViewPagerAdapter(fm: FragmentActivity) :
     }
 
     override fun createFragment(position: Int): Fragment {
-        return fragments[position]
+        return when (position) {
+            0 -> { ContactListFragment() }
+            1 -> { MyPageFragment() }
+            else -> {
+                throw IllegalArgumentException("Fragment does not exist")
+            }
+        }
     }
 }

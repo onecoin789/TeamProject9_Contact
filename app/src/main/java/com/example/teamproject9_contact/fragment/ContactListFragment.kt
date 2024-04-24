@@ -9,18 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.FragmentDataListener
 import com.example.teamproject9_contact.R
 import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.FragmentContactListBinding
 import java.lang.RuntimeException
 
+
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
 class ContactListFragment : Fragment() {
 
     private val binding: FragmentContactListBinding by lazy {
         FragmentContactListBinding.inflate(layoutInflater)
     }
-
 
     private var listener: FragmentDataListener? = null
 
@@ -75,4 +79,14 @@ class ContactListFragment : Fragment() {
         }
     }
 
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            ContactListFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
 }

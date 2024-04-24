@@ -91,16 +91,18 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         }
         return super.onOptionsItemSelected(item)
     }
-
     override fun onContactAdd(contact: Contact) {
         // 연락처 추가 시 처리할 부분
     }
 
     override fun onDataReceived(infoData: Contact) = with(binding) {
         vpMain.currentItem = 1
-        if(vpMain.adapter is MainViewPagerAdapter)
-                (vpMain.adapter as MainViewPagerAdapter).setFragment(ContactDetailFragment.newInstance(infoData), 0)
-    }
+        if (vpMain.adapter is MainViewPagerAdapter)
+            (vpMain.adapter as MainViewPagerAdapter).setFragment(
+                ContactDetailFragment.newInstance(
+                    infoData
+                ), 0
+            )
 
 //    private fun setFragment(fragment: Fragment) {
 //        supportFragmentManager.commit {
@@ -108,6 +110,5 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
 //            setReorderingAllowed(true)
 //            addToBackStack("")
 //        }
-//    }
-
+    }
 }
