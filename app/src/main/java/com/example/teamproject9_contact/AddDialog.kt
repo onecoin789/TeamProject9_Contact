@@ -17,12 +17,16 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
+import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.DialogLayoutBinding
+import com.example.teamproject9_contact.fragment.ContactListAdapter
 import kotlin.ClassCastException
 
 class AddDialog: DialogFragment() {
     private lateinit var listener: AddDialogListener
     private var _binding: DialogLayoutBinding? = null
+    private val data = ContactList.list
+    private val adapter = ContactListAdapter(data)
     private val binding get() = _binding!!
     private lateinit var pictureLauncher: ActivityResultLauncher<Intent>
 
@@ -152,6 +156,7 @@ class AddDialog: DialogFragment() {
 
             // 확인 버튼 클릭
             dialogConfirmButton.setOnClickListener {
+                addTask()
                 if (nameCheck == false || emailCheck == false || numberCheck == false) {
                     Toast.makeText(context, "입력창을 모두 올바른 형식으로 작성하세요", Toast.LENGTH_SHORT).show()
                 } else {
@@ -172,6 +177,18 @@ class AddDialog: DialogFragment() {
             }
         }
 
+
         return binding.root
+    }
+    //데이터 추가
+    fun addTask() {
+        val name = binding.dialogName.text.toString()
+        val phone = binding.dialogPhoneNumber.text.toString()
+        val email = binding.dialogEmail.text.toString()
+        val imgResource = R.drawable.dialog_circle
+        val todo = Contact(name, phone, email, imgResource, false)
+        data.add(todo)
+        adapter.notifyDataSetChanged()
+
     }
 }

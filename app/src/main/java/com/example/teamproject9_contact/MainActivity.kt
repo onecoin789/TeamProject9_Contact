@@ -1,5 +1,7 @@
 package com.example.teamproject9_contact
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
     }
 
     private fun addContact() {
-        binding.ivBtnMultifunctional.setOnClickListener {
+        binding.fbMain.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val addDialog = AddDialog()
             addDialog.show(fragmentManager, "AddDialog")
@@ -69,19 +71,21 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         binding.vpMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                binding.ivBtnMultifunctional.setImageResource(
+                binding.fbMain.setImageResource(
                     when (position) {
-                        0 -> R.drawable.ic_main_person
-                        else -> R.drawable.ic_main_phone
+                        0 -> R.drawable.add_user
+                        else -> R.drawable.call
                     }
                 )
-                binding.ivBtnMultifunctional.setOnClickListener {
+                binding.fbMain.setOnClickListener {
                     when (position) {
                         0 -> {
                             val dialog = AddDialog()
                             dialog.show(this@MainActivity.supportFragmentManager, "AddDialog")
                         }
                         else -> {
+                            val call = Uri.parse("tel:")
+                            startActivity(Intent(Intent.ACTION_DIAL, call))
 
                         }
                     }
@@ -109,13 +113,13 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
     }
 
     override fun onDataReceived(infoData: Contact) = with(binding) {
-        vpMain.currentItem = 1
-        if (vpMain.adapter is MainViewPagerAdapter)
-            (vpMain.adapter as MainViewPagerAdapter).setFragment(
-                ContactDetailFragment.newInstance(
-                    infoData
-                ), 0
-            )
+//        vpMain.currentItem = 1
+//        if (vpMain.adapter is MainViewPagerAdapter)
+//            (vpMain.adapter as MainViewPagerAdapter).setFragment(
+//                ContactDetailFragment.newInstance(
+//                    infoData
+//                ), 0
+//            )
 
 //    private fun setFragment(fragment: Fragment) {
 //        supportFragmentManager.commit {

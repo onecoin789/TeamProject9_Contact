@@ -1,5 +1,6 @@
 package com.example.teamproject9_contact.fragment
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.teamproject9_contact.databinding.LayoutContactListDefBinding
 
 class ContactListAdapter(private val contactList: MutableList<Contact>) :
     RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
+
 
     interface Click {
         fun clicked(view: View, position: Int)
@@ -32,6 +34,7 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
             click?.clicked(it, position)
         }
         holder.bind(contactList[position])
+
 
     }
 

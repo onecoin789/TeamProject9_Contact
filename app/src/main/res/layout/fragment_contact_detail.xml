@@ -35,25 +35,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_Detail_Title"
         app:layout_constraintEnd_toEndOf="@+id/img_Detail_Title">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_Detail_Like"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_contactfrag_star_str"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_Detail_Title">
+        app:layout_constraintTop_toBottomOf="@id/img_Detail_Title"
+        app:layout_constraintBottom_toTopOf="@+id/fb_Detail_Send">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -133,20 +137,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_Detail_3" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/btn_Detail"-->
-<!--        android:layout_width="60dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_margin="20dp"-->
-<!--        android:backgroundTint="@color/blossom"-->
-<!--        android:src="@drawable/ic_mypage_call"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:rippleColor="@color/petal"-->
-<!--        app:tint="@color/petal"-->
-<!--        app:shapeAppearanceOverlay="@style/FabShape" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Detail_Call"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/blossom"
+        android:src="@drawable/call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:fabCustomSize="60dp"
+        app:rippleColor="@color/petal"
+        app:tint="@color/petal"
+        app:shapeAppearanceOverlay="@style/FabShape" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Detail_Send"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/blossom"
+        android:src="@drawable/email"
+        app:layout_constraintStart_toEndOf="@+id/fb_Detail_Call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:rippleColor="@color/petal"
+        app:fabCustomSize="60dp"
+        app:tint="@color/petal"
+        app:shapeAppearanceOverlay="@style/FabShape" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
