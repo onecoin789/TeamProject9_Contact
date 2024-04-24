@@ -36,6 +36,10 @@
         android:id="@+id/tabLay_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/blossom"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 <!--    <androidx.appcompat.widget.AppCompatButton-->
@@ -71,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:fabCustomSize="70dp"
-        app:rippleColor="@color/petal"
+        app:rippleColor="@color/blossom"
         app:tint="@color/blossom"
         app:shapeAppearanceOverlay="@style/FabShape" />
 
