@@ -1,5 +1,20 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="#979797" />
-    <stroke android:color="#00000000"/>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:width="120dp" android:height="120dp">
+        <shape android:shape="oval">
+            <solid android:color="#FDD5DC" />
+            <stroke android:color="#00000000" />
+        </shape>
+    </item>
+
+    <item android:width="48dp" android:height="5dp" android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="#7E212C" />
+        </shape>
+    </item>
+
+    <item android:width="5dp" android:height="48dp" android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="#7E212C" />
+        </shape>
+    </item>
+</layer-list>
