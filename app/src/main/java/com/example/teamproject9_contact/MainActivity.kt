@@ -75,6 +75,18 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
                         else -> R.drawable.ic_main_phone
                     }
                 )
+                binding.ivBtnMultifunctional.setOnClickListener {
+                    when (position) {
+                        0 -> {
+                            val dialog = AddDialog()
+                            dialog.show(this@MainActivity.supportFragmentManager, "AddDialog")
+                        }
+                        else -> {
+
+                        }
+                    }
+
+                }
             }
         })
     }
@@ -91,6 +103,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         }
         return super.onOptionsItemSelected(item)
     }
+
     override fun onContactAdd(contact: Contact) {
         // 연락처 추가 시 처리할 부분
     }
