@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.databinding.LayoutContactListDefBinding
 import java.lang.RuntimeException
 
-class ContactListAdapter(private val contactList: MutableList<DataClass>) :
+class ContactListAdapter(private val contactList: MutableList<Contact>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface Click {
@@ -37,13 +37,13 @@ class ContactListAdapter(private val contactList: MutableList<DataClass>) :
             holder.layout.setOnClickListener {
                 click?.clicked(it, position)
             }
-//            holder.bind(contactList[position])
+            holder.bind(contactList[position])
         } else if (holder is ViewHolderBg) {
             holder.layout.setOnClickListener {
                 click?.clicked(it, position)
             }
             holder.setBg()
-//            holder.bind(contactList[position])
+            holder.bind(contactList[position])
         } else {
             throw RuntimeException("알 수 없는 뷰 타입")
         }
@@ -59,15 +59,25 @@ class ContactListAdapter(private val contactList: MutableList<DataClass>) :
     }
 
     override fun getItemCount(): Int {
-        return 10 //contactList.size
+        return contactList.size
     }
 
-    inner class ViewHolderDef(binding: LayoutContactListDefBinding) :
+    inner class ViewHolderDef(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-        fun bind(info: DataClass) {
-//            val priceContext = binding.tvPrice.context
-//            binding.ivProductImg.setImageResource(info.image)
+        fun bind(info: Contact) {
+            binding.ivProfileImg.setImageResource(info.imgResource)
+            binding.tvName.setText(info.name)
+            binding.tvPhoneNum.setText(info.phoneNum)
+            binding.ivBookmark.setOnClickListener {
+                if (info.bookmark) {
+                    info.copy(bookmark = false)
+                    binding.ivBookmark.setImageResource(R.drawable.ic_contactfrag_star_str)
+                } else {
+                    info.copy(bookmark = true)
+                    binding.ivBookmark.setImageResource(R.drawable.ic_contactfrag_star_fill)
+                }
+            }
         }
     }
 
@@ -77,9 +87,19 @@ class ContactListAdapter(private val contactList: MutableList<DataClass>) :
         fun setBg() {
             binding.layout.setBackgroundColor(ContextCompat.getColor(binding.layout.context, R.color.petal_light))
         }
-        fun bind(info: DataClass) {
-//            val priceContext = binding.tvPrice.context
-//            binding.ivProductImg.setImageResource(info.image)
+        fun bind(info: Contact) {
+            binding.ivProfileImg.setImageResource(info.imgResource)
+            binding.tvName.setText(info.name)
+            binding.tvPhoneNum.setText(info.phoneNum)
+            binding.ivBookmark.setOnClickListener {
+                if (info.bookmark) {
+                    info.copy(bookmark = false)
+                    binding.ivBookmark.setImageResource(R.drawable.ic_contactfrag_star_str)
+                } else {
+                    info.copy(bookmark = true)
+                    binding.ivBookmark.setImageResource(R.drawable.ic_contactfrag_star_fill)
+                }
+            }
         }
     }
 

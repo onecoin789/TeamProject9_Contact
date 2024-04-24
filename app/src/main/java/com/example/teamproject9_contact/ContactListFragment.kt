@@ -32,7 +32,7 @@ class ContactListFragment : Fragment() {
     }
 
     private val userInfoData by lazy {
-        mutableListOf<DataClass>()
+        mutableListOf<Contact>()
     }
 
     private var listener: FragmentDataListener? = null
@@ -94,7 +94,78 @@ class ContactListFragment : Fragment() {
 
     // 데이터 초기화
     private fun initListData() {
-        userInfoData.add(DataClass())
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
+        userInfoData.add(
+            Contact(
+                getString(R.string.name_1),
+                getString(R.string.phonen_num_1),
+                getString(R.string.email_1),
+                R.drawable.img_contactfrag_profile,
+                false
+            )
+        )
     }
 
     companion object {

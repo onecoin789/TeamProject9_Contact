@@ -15,8 +15,7 @@ class MainViewPagerAdapter(fm: FragmentActivity):
             0 -> { ContactListFragment() }
             1 ->{ MyPageFragment() }
             else -> {
-                return BlankFragment()
-//                throw IllegalArgumentException("Fragment does not exist")
+                throw IllegalArgumentException("Fragment does not exist")
             }
         }
     }

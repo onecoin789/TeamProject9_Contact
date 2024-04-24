@@ -7,4 +7,7 @@
     <string name="이벤트">Event</string>
     <string name="취소">Cancel</string>
     <string name="확인">Confirm</string>
+    <string name="name_1">IU</string>
+    <string name="phonen_num_1">010-1111-1111</string>
+    <string name="email_1">iulove@naver.com</string>
 </resources>

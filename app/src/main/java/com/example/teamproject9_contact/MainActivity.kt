@@ -85,11 +85,11 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         return super.onOptionsItemSelected(item)
     }
     
-    override fun onContactAdd(contact: Contacts) {
+    override fun onContactAdd(contact: Contact) {
         // 연락처 추가 시 처리할 부분
     }
 
-    override fun onDataReceived(infoData: DataClass) {
+    override fun onDataReceived(infoData: Contact) {
 //        TODO("Not yet implemented")
     }
 

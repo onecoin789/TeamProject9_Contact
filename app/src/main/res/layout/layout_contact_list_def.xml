@@ -39,7 +39,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/tv_address"
+            android:id="@+id/tv_phone_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="010-0000-0000"
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <ImageView
-            android:id="@+id/iv_like"
+            android:id="@+id/iv_bookmark"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:src="@drawable/ic_contactfrag_star_str"
