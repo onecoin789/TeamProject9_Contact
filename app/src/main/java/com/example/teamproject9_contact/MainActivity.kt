@@ -22,13 +22,14 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         addContact()
     }
 
-    private fun addContact(){
+    private fun addContact() {
         binding.ivBtnMultifunctional.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val addDialog = AddDialog()
             addDialog.show(fragmentManager, "AddDialog")
         }
     }
+
     private fun setUi() {
         setToolbarUi()
         setViewPagerTabLayoutUi()
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         }
         return super.onOptionsItemSelected(item)
     }
-    
+
     override fun onContactAdd(contact: Contact) {
         // 연락처 추가 시 처리할 부분
     }
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
     override fun onDataReceived(infoData: Contact) = with(binding) {
         vpMain.currentItem = 1
         if(vpMain.adapter is MainViewPagerAdapter)
-                (vpMain.adapter as MainViewPagerAdapter).setFragment(ContactDetailFragment.newInstance(infoData), 1)
+                (vpMain.adapter as MainViewPagerAdapter).setFragment(ContactDetailFragment.newInstance(infoData), 0)
     }
 
 //    private fun setFragment(fragment: Fragment) {

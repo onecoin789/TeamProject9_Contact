@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.databinding.FragmentContactDetailBinding
 
+private const val ARG_PARAM1 = "param1"
 class ContactDetailFragment : Fragment() {
-    //    private val myContact: Contact? = null
+
     private var param1: Contact? = null
 
 
@@ -20,7 +21,7 @@ class ContactDetailFragment : Fragment() {
 
 
         arguments?.let {
-//            param1 = it.getParcelable(ARG_PARAM1)
+            param1 = it.getParcelable(ARG_PARAM1)
         }
     }
 
@@ -51,7 +52,7 @@ class ContactDetailFragment : Fragment() {
         fun newInstance(param1: Contact) =
             ContactDetailFragment().apply {
                 arguments = Bundle().apply {
-//                    putParcelable(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM1, param1)
                 }
             }
     }

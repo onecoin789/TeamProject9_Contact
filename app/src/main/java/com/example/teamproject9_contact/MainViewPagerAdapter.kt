@@ -10,7 +10,7 @@ class MainViewPagerAdapter(fm: FragmentActivity) :
     FragmentStateAdapter(fm) {
     private var fragments = mutableListOf<Fragment>(
         ContactListFragment(),
-        ContactDetailFragment()
+        MyPageFragment()
     )
 
     fun setFragment(fragment: Fragment, position: Int){

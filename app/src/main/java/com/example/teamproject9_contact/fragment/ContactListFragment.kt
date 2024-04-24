@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.FragmentDataListener
+import com.example.teamproject9_contact.R
 import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.FragmentContactListBinding
 import java.lang.RuntimeException
@@ -65,11 +66,11 @@ class ContactListFragment : Fragment() {
                 val selectedData = ContactList.list[position]
                 listener?.onDataReceived(selectedData)
 
-//                val fragment = ContactDetailFragment.newInstance()
-//                requireActivity().supportFragmentManager.beginTransaction()
-//                    .replace(R.id.frame, fragment)
-//                    .addToBackStack(null)
-//                    .commit()
+                val fragment = ContactDetailFragment.newInstance(selectedData)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.frame, fragment)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }
