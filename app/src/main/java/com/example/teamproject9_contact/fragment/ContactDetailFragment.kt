@@ -1,11 +1,14 @@
 package com.example.teamproject9_contact.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teamproject9_contact.Contact
+import com.example.teamproject9_contact.R
 import com.example.teamproject9_contact.databinding.FragmentContactDetailBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -21,7 +24,10 @@ class ContactDetailFragment : Fragment() {
 
         arguments?.let {
             param1 = it.getParcelable(ARG_PARAM1)
+
         }
+
+
     }
 
     override fun onCreateView(
@@ -31,18 +37,30 @@ class ContactDetailFragment : Fragment() {
         binding = FragmentContactDetailBinding.inflate(inflater)
 
 
-//        데이터 키값넣기
-//        arguments?.let { binding.imgDetailTitle.setImageResource(param1!!.imgResource) }
-        binding.imgDetailTitle.setImageResource(param1!!.imgResource)
-        binding.textDetailName.text = param1?.name
-        binding.textDetailPhoneNumber.text = param1?.phoneNum
-        binding.textDetailEmail.text = param1?.email
+        initView()
 
-//        binding.btnDetail.setOnClickListener {
-//
-//        }
 
         return binding.root
+    }
+
+    private fun initView() = with(binding) {
+        imgDetailTitle.setImageResource(param1!!.imgResource)
+        textDetailName.text = param1?.name
+        textDetailPhoneNumber.text = param1?.phoneNum
+        textDetailEmail.text = param1?.email
+
+
+        binding.fbDetailCall.setOnClickListener {
+            val phoneNum = textDetailPhoneNumber.text
+            val call = Uri.parse("tel:${phoneNum}")
+            startActivity(Intent(Intent.ACTION_DIAL, call))
+        }
+
+        binding.fbDetailSend.setOnClickListener {
+            val phoneNum = textDetailPhoneNumber.text
+            val send = Uri.parse("smsto:${phoneNum}")
+            startActivity(Intent(Intent.ACTION_SENDTO, send))
+        }
     }
 
 
