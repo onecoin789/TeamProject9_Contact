@@ -10,25 +10,23 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_Detail_Top"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blossom"
-        app:title="어쩌구저쩌구 앱"
-        app:titleTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:background="@color/blossom"
+        app:titleTextColor="@color/white"
+        app:title="어쩌구저쩌구 앱"/>
 
 
     <ImageView
         android:id="@+id/img_Detail_Title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@drawable/image1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb_Detail_Top"/>
+        app:layout_constraintTop_toBottomOf="@id/tb_Detail_Top"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -40,7 +38,6 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/ic_mypage_heart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
