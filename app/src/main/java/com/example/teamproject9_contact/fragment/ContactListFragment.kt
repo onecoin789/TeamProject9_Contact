@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.FragmentDataListener
 import com.example.teamproject9_contact.R
 import com.example.teamproject9_contact.data.ContactList
@@ -72,6 +71,10 @@ class ContactListFragment : Fragment() {
 
                 val fragment = ContactDetailFragment.newInstance(selectedData)
                 requireActivity().supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out)
                     .replace(R.id.frame, fragment)
                     .addToBackStack(null)
                     .commit()
