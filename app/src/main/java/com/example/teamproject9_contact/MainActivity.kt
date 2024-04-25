@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.viewpager2.widget.ViewPager2
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.example.teamproject9_contact.fragment.ContactDetailFragment
@@ -89,7 +90,6 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
 
                         }
                     }
-
                 }
             }
         })

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.FragmentDataListener
@@ -80,6 +81,9 @@ class ContactListFragment : Fragment() {
                     .commit()
             }
         }
+
+        val itemTouchHelper = ItemTouchHelper(ItemTouchCallbackContactList(binding.layoutRecyclerview))
+        itemTouchHelper.attachToRecyclerView(binding.layoutRecyclerview)
     }
 
     companion object {
