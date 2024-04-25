@@ -35,15 +35,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_Detail_Title"
         app:layout_constraintEnd_toEndOf="@+id/img_Detail_Title">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_Detail_Like"-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@drawable/ic_contactfrag_star_str"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <ImageView
+            android:id="@+id/img_Detail_bookmark"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/slc_contactfrag_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

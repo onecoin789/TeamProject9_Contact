@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teamproject9_contact.Contact
-import com.example.teamproject9_contact.R
+import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.FragmentContactDetailBinding
 
 private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 class ContactDetailFragment : Fragment() {
 
     private var param1: Contact? = null
+    private var param2: Int? = null
 
 
     private lateinit var binding: FragmentContactDetailBinding
@@ -24,7 +26,7 @@ class ContactDetailFragment : Fragment() {
 
         arguments?.let {
             param1 = it.getParcelable(ARG_PARAM1)
-
+            param2 = it.getInt(ARG_PARAM2)
         }
 
 
@@ -44,11 +46,16 @@ class ContactDetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        imgDetailTitle.setImageResource(param1!!.imgResource)
+        imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
         textDetailName.text = param1?.name
         textDetailPhoneNumber.text = param1?.phoneNum
         textDetailEmail.text = param1?.email
 
+        imgDetailBookmark.isSelected = ContactList.list[param2!!].bookmark
+        imgDetailBookmark.setOnClickListener {
+            imgDetailBookmark.isSelected = imgDetailBookmark.isSelected != true
+            ContactList.list[param2!!].bookmark = ContactList.list[param2!!].bookmark != true
+        }
 
         binding.fbDetailCall.setOnClickListener {
             val phoneNum = textDetailPhoneNumber.text
@@ -67,10 +74,11 @@ class ContactDetailFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: Contact) =
+        fun newInstance(param1: Contact, param2: Int) =
             ContactDetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM1, param1)
+                    putInt(ARG_PARAM2, param2)
                 }
             }
     }

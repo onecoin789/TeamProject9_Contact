@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.FragmentDataListener
@@ -28,6 +30,8 @@ class ContactListFragment : Fragment() {
 
     private var listener: FragmentDataListener? = null
 
+    private var viewIndex: String? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -41,8 +45,8 @@ class ContactListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-        }
+        viewIndex = arguments?.getString(ARG_PARAM1)
+
     }
 
     override fun onCreateView(
@@ -57,6 +61,14 @@ class ContactListFragment : Fragment() {
 
         val adapterList = ContactListAdapter(ContactList.list)
         val adapterGrid = ContactGridAdapter(ContactList.list)
+
+        if (viewIndex == "grid") {
+            binding.layoutRecyclerview.isVisible = false
+            binding.layoutGridview.isVisible = true
+        } else {
+            binding.layoutGridview.isVisible = false
+            binding.layoutRecyclerview.isVisible = true
+        }
 
         binding.layoutRecyclerview.apply {
             addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
@@ -84,7 +96,7 @@ class ContactListFragment : Fragment() {
         val selectedData = ContactList.list[position]
         listener?.onDataReceived(selectedData)
 
-        val fragment = ContactDetailFragment.newInstance(selectedData)
+        val fragment = ContactDetailFragment.newInstance(selectedData, position)
         requireActivity().supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.slide_in,
                 R.anim.fade_out,
@@ -93,15 +105,18 @@ class ContactListFragment : Fragment() {
             .replace(R.id.frame, fragment)
             .addToBackStack(null)
             .commit()
+
+        val itemTouchHelper = ItemTouchHelper(ItemTouchCallbackContactList(binding.layoutRecyclerview))
+        itemTouchHelper.attachToRecyclerView(binding.layoutRecyclerview)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String?) =
             ContactListFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+//                    putString(ARG_PARAM2, param2)
                 }
             }
     }

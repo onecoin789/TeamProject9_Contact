@@ -1,12 +1,11 @@
 package com.example.teamproject9_contact
 
 import android.app.Activity.RESULT_OK
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,27 +19,31 @@ import androidx.fragment.app.DialogFragment
 import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.DialogLayoutBinding
 import com.example.teamproject9_contact.fragment.ContactListAdapter
-import kotlin.ClassCastException
+import android.util.Log
 
 class AddDialog: DialogFragment() {
-    private lateinit var listener: AddDialogListener
     private var _binding: DialogLayoutBinding? = null
     private val data = ContactList.list
     private val adapter = ContactListAdapter(data)
     private val binding get() = _binding!!
     private lateinit var pictureLauncher: ActivityResultLauncher<Intent>
 
-    interface AddDialogListener {
-        fun onContactAdd(contact: Contact)
+    private lateinit var uri: Uri
+
+    fun addTask() {
+        val imageUri = uri
+        val name = binding.dialogName.text.toString()
+        val phone = binding.dialogPhoneNumber.text.toString()
+        val email = binding.dialogEmail.text.toString()
+
+        val todo = Contact(name, phone, email, imageUri.toString(), false, true)
+        data.add(todo)
+        Log.d("debug333", data.toString())
+        adapter.notifyDataSetChanged()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            listener = context as AddDialogListener
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context 오류")
-        }
+    interface AddDialogListener {
+        fun onContactAdd(contact: Contact)
     }
 
     override fun onCreateView(
@@ -54,10 +57,12 @@ class AddDialog: DialogFragment() {
         pictureLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK && it.data != null) {
-                    val uri = it.data!!.data
-                    val inputStream = requireContext().contentResolver.openInputStream(uri!!)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    binding.dialogImg.setImageBitmap(bitmap)
+                    uri = it.data!!.data!!
+                    if (uri != null) {
+                        val inputStream = requireContext().contentResolver.openInputStream(uri!!)
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        binding.dialogImg.setImageBitmap(bitmap)
+                    }
                 }
             }
 
@@ -156,17 +161,10 @@ class AddDialog: DialogFragment() {
 
             // 확인 버튼 클릭
             dialogConfirmButton.setOnClickListener {
-                addTask()
                 if (nameCheck == false || emailCheck == false || numberCheck == false) {
                     Toast.makeText(context, "입력창을 모두 올바른 형식으로 작성하세요", Toast.LENGTH_SHORT).show()
                 } else {
-                    val name = dialogName.text.toString()
-                    val phone = dialogPhoneNumber.text.toString()
-                    val email = dialogEmail.text.toString()
-                    val imgResource = R.drawable.dialog_circle
-
-                    val contact = Contact(name, phone, email, imgResource, false)
-                    listener.onContactAdd(contact)
+                    addTask()
                     dismiss()
                 }
             }
@@ -176,19 +174,7 @@ class AddDialog: DialogFragment() {
                 dismiss()
             }
         }
-
-
         return binding.root
     }
-    //데이터 추가
-    fun addTask() {
-        val name = binding.dialogName.text.toString()
-        val phone = binding.dialogPhoneNumber.text.toString()
-        val email = binding.dialogEmail.text.toString()
-        val imgResource = R.drawable.dialog_circle
-        val todo = Contact(name, phone, email, imgResource, false)
-        data.add(todo)
-        adapter.notifyDataSetChanged()
 
-    }
 }

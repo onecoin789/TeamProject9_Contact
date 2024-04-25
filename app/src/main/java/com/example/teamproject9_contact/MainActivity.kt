@@ -7,9 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.viewpager2.widget.ViewPager2
 import com.example.teamproject9_contact.databinding.ActivityMainBinding
 import com.example.teamproject9_contact.fragment.ContactDetailFragment
+import com.example.teamproject9_contact.fragment.ContactGridAdapter
+import com.example.teamproject9_contact.fragment.ContactListFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentDataListener {
@@ -48,7 +51,7 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
 
     private fun setViewPagerTabLayoutUi() {
         with(binding) {
-            vpMain.adapter = MainViewPagerAdapter(this@MainActivity)
+            vpMain.adapter = MainViewPagerAdapter(this@MainActivity, null)
             vpMain.isUserInputEnabled = false
 
             TabLayoutMediator(tabLayMain, vpMain) { tab, position ->
@@ -89,7 +92,6 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
 
                         }
                     }
-
                 }
             }
         })
@@ -102,8 +104,8 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.toolbar_recyclerView -> {}
-            R.id.toolbar_gridView -> {}
+            R.id.toolbar_recyclerView -> { binding.vpMain.adapter = MainViewPagerAdapter(this@MainActivity, "recycler")}
+            R.id.toolbar_gridView -> { binding.vpMain.adapter = MainViewPagerAdapter(this@MainActivity, "grid") }
         }
         return super.onOptionsItemSelected(item)
     }

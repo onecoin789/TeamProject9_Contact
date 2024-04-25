@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.R
+import com.example.teamproject9_contact.data.ContactList
 
 class ContactGridAdapter(private val contactList: MutableList<Contact>) : BaseAdapter() {
 
@@ -25,12 +26,13 @@ class ContactGridAdapter(private val contactList: MutableList<Contact>) : BaseAd
         val inflater = parent!!.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contactView = inflater.inflate(R.layout.layout_contact_list_grid, null)
 
-        contactView.findViewById<ImageView>(R.id.iv_profile_img).setImageResource(contact.imgResource)
+        contactView.findViewById<ImageView>(R.id.iv_profile_img).setImageResource(contact.imgResource.toInt())
         contactView.findViewById<TextView>(R.id.tv_name).text = contact.name
         val bookMark = contactView.findViewById<ImageView>(R.id.iv_bookmark)
-        bookMark.isSelected = contact.bookmark
+        bookMark.isSelected = ContactList.list[position].bookmark
         bookMark.setOnClickListener {
             bookMark.isSelected = bookMark.isSelected != true
+            ContactList.list[position].bookmark = ContactList.list[position].bookmark != true
         }
 
         contactView.setOnClickListener {
