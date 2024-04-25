@@ -146,7 +146,7 @@ class AddDialog: DialogFragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val phoneNumber = Regex("^[0-9]{11}\$")
+                    val phoneNumber = Regex("^01[0-9]-[0-9]{4}-[0-9]{4}\$")
 
                     if(phoneNumber.matches(dialogPhoneNumber.text)) {
                         dialogPhoneNumber.error = null
