@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.contact_refac.R
 import com.example.contact_refac.data.ContactList
 import com.example.contact_refac.databinding.FragmentContactListBinding
+import com.example.contact_refac.presentation.main.fragment.addDialog.AddDialog
 
 class ContactListFragment : Fragment() {
     private lateinit var binding: FragmentContactListBinding
@@ -53,6 +54,7 @@ class ContactListFragment : Fragment() {
         getList()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         itemTouchHelper()
+        addContact()
     }
 
     private fun itemTouchHelper(){
@@ -118,6 +120,14 @@ class ContactListFragment : Fragment() {
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+    }
+
+    private fun addContact() {
+        binding.fbMain.setOnClickListener {
+            val fragmentManager = parentFragmentManager
+            val addDialog = AddDialog()
+            addDialog.show(fragmentManager, "AddDialog")
+        }
     }
 
 }

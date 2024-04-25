@@ -32,16 +32,6 @@ class MainActivity : AppCompatActivity(), EditProfileListener {
         setContentView(binding.root)
 
         setUi()
-        addContact()
-    }
-
-    private fun addContact() {
-        binding.fbMain.setOnClickListener {
-            val fragmentManager = supportFragmentManager
-            val addDialog = AddDialog()
-            addDialog.show(fragmentManager, "AddDialog")
-        }
-
     }
 
     private fun setUi() {
@@ -63,13 +53,11 @@ class MainActivity : AppCompatActivity(), EditProfileListener {
                     0 -> {
                         binding.tbTop.menu.clear()
                         binding.tbTop.inflateMenu(R.menu.toolbar_main)
-                        binding.fbMain.visibility = View.VISIBLE
                     }
 
                     1 -> {
                         binding.tbTop.menu.clear()
                         binding.tbTop.inflateMenu(R.menu.toolbar_mypage)
-                        binding.fbMain.visibility = View.INVISIBLE
                     }
                 }
             }

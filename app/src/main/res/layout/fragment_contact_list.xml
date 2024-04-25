@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.main.fragment.contactList.ContactListFragment">
 
 
@@ -19,4 +20,17 @@
         android:layout_marginBottom="3dp"
         android:numColumns="4"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Main"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/petal"
+        android:src="@drawable/add_user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fabCustomSize="70dp"
+        app:rippleColor="@color/blossom"
+        app:tint="@color/blossom"
+        app:shapeAppearanceOverlay="@style/FabShape"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
