@@ -1,6 +1,6 @@
 package com.example.teamproject9_contact.fragment
 
-import android.os.Bundle
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +64,12 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
         }
 
         fun bind(info: Contact) {
-            binding.ivProfileImg.setImageResource(info.imgResource)
+            if(info.isUri) {
+                val uri = Uri.parse(info.imgResource)
+                binding.ivProfileImg.setImageURI(uri)
+            } else {
+                binding.ivProfileImg.setImageResource(info.imgResource.toInt())
+            }
             binding.tvName.text = info.name
             binding.tvPhoneNum.text = info.phoneNum
 

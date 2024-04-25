@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teamproject9_contact.Contact
-import com.example.teamproject9_contact.R
 import com.example.teamproject9_contact.databinding.FragmentContactDetailBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -44,7 +43,7 @@ class ContactDetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        imgDetailTitle.setImageResource(param1!!.imgResource)
+        imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
         textDetailName.text = param1?.name
         textDetailPhoneNumber.text = param1?.phoneNum
         textDetailEmail.text = param1?.email

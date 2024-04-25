@@ -8,6 +8,7 @@ data class Contact (
     val name: String,
     val phoneNum: String,
     val email: String,
-    val imgResource: Int,
-    val bookmark: Boolean
+    val imgResource: String,
+    val bookmark: Boolean,
+    val isUri: Boolean
 ) : Parcelable
