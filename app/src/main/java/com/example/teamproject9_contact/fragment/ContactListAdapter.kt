@@ -55,9 +55,9 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
         val layout = binding.layoutContact
 
         fun setBg() {
-            binding.layout.setBackgroundColor(
+            binding.layoutContact.setBackgroundColor(
                 ContextCompat.getColor(
-                    binding.layout.context,
+                    binding.layoutContact.context,
                     R.color.petal_light
                 )
             )

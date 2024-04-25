@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,32 +55,44 @@ class ContactListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ContactListAdapter(ContactList.list)
+        val adapterList = ContactListAdapter(ContactList.list)
+        val adapterGrid = ContactGridAdapter(ContactList.list)
 
         binding.layoutRecyclerview.apply {
             addItemDecoration(DividerItemDecoration(activity, RecyclerView.VERTICAL))
             layoutManager =
                 LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-            this.adapter = adapter
+            this.adapter = adapterList
         }
-
 //        클릭 동작 수행
-        adapter.click = object : ContactListAdapter.Click {
+        adapterList.click = object : ContactListAdapter.Click {
             override fun clicked(view: View, position: Int) {
-                val selectedData = ContactList.list[position]
-                listener?.onDataReceived(selectedData)
-
-                val fragment = ContactDetailFragment.newInstance(selectedData)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.slide_in,
-                        R.anim.fade_out,
-                        R.anim.fade_in,
-                        R.anim.slide_out)
-                    .replace(R.id.frame, fragment)
-                    .addToBackStack(null)
-                    .commit()
+                onClick(position)
             }
         }
+
+        binding.layoutGridview.adapter = adapterGrid
+        adapterGrid.click = object : ContactGridAdapter.Click {
+            override fun clicked(view: View, position: Int) {
+                onClick(position)
+            }
+        }
+
+    }
+
+    private fun onClick(position: Int) {
+        val selectedData = ContactList.list[position]
+        listener?.onDataReceived(selectedData)
+
+        val fragment = ContactDetailFragment.newInstance(selectedData)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out)
+            .replace(R.id.frame, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {
