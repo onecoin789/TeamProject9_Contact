@@ -24,7 +24,7 @@ import com.example.contact_refac.data.ContactList
 import com.example.contact_refac.data.EditProfileListener
 import com.example.contact_refac.databinding.DialogAddContactBinding
 
-class EditDialog(private val contact: Contact): DialogFragment() {
+class EditDialog(private val contact: Contact) : DialogFragment() {
     private val binding: DialogAddContactBinding by lazy {
         DialogAddContactBinding.inflate(
             layoutInflater
@@ -36,29 +36,48 @@ class EditDialog(private val contact: Contact): DialogFragment() {
 
     private fun editTask() {
         val imageUri = uri
+        val isUri = uri != null
         val name = binding.etName.text.toString()
         val phone = convertToFormattedPhoneNumber(binding.etNumber.text.toString())
         val email = binding.etEmail.text.toString()
 
         val position = ContactList.list.indexOf(contact)
         var contact: Contact? = null
-        if(position == -1) {
-            ContactList.myContact = ContactList.myContact.copy(
-                name = name,
-                phoneNum = phone,
-                email = email
-            )
+        if (position == -1) {
+            if (isUri) {
+                ContactList.myContact = ContactList.myContact.copy(
+                    name = name,
+                    phoneNum = phone,
+                    email = email,
+                    isUri = isUri,
+                    imgResource = imageUri.toString()
+                )
+            } else {
+                ContactList.myContact = ContactList.myContact.copy(
+                    name = name,
+                    phoneNum = phone,
+                    email = email
+                )
+            }
             contact = ContactList.myContact
         } else {
-            ContactList.list[position] = ContactList.list[position].copy(
-                name = name,
-                phoneNum = phone,
-                email = email
-            )
+            if (isUri) {
+                ContactList.list[position] = ContactList.list[position].copy(
+                    name = name,
+                    phoneNum = phone,
+                    email = email,
+                    isUri = isUri,
+                    imgResource = imageUri.toString()
+                )
+            } else {
+                ContactList.list[position] = ContactList.list[position].copy(
+                    name = name,
+                    phoneNum = phone,
+                    email = email
+                )
+            }
             contact = ContactList.list[position]
         }
-        Log.d("ContactList", ContactList.list.toString())
-        Log.d("ContactList", ContactList.myContact.toString())
         listener?.notifyDataChanged(contact)
     }
 
@@ -73,10 +92,10 @@ class EditDialog(private val contact: Contact): DialogFragment() {
         }
     }
 
-    private fun setDialog() = with(binding){
-        etName.text =  Editable.Factory.getInstance().newEditable(contact.name ?: "")
-        etNumber.text =  Editable.Factory.getInstance().newEditable(contact.phoneNum ?: "")
-        etEmail.text =  Editable.Factory.getInstance().newEditable(contact.email ?: "")
+    private fun setDialog() = with(binding) {
+        etName.text = Editable.Factory.getInstance().newEditable(contact.name ?: "")
+        etNumber.text = Editable.Factory.getInstance().newEditable(contact.phoneNum ?: "")
+        etEmail.text = Editable.Factory.getInstance().newEditable(contact.email ?: "")
         if (contact.isUri) {
             val uri = Uri.parse(contact.imgResource)
             ivProfile.setImageURI(uri)
@@ -89,8 +108,9 @@ class EditDialog(private val contact: Contact): DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is EditProfileListener) listener = context
+        if (context is EditProfileListener) listener = context
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -37,7 +37,7 @@ class ContactListRecyclerViewAdapter :
             if (data.isUri) {
                 val uri = Uri.parse(data.imgResource)
                 ivProfileImg.setImageURI(uri)
-            } else if (data.imgResource != "") {
+            } else if (data.imgResource.trim().isNotEmpty()) {
                 ivProfileImg.setImageResource(data.imgResource.toInt())
             } else {
                 ivProfileImg.setImageResource(R.drawable.ic_user)

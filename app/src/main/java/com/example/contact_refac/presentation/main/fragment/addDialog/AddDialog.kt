@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
+import com.example.contact_refac.R
 import com.example.contact_refac.data.Contact
 import com.example.contact_refac.data.ContactList
 import com.example.contact_refac.databinding.DialogAddContactBinding
@@ -34,6 +35,7 @@ class AddDialog : DialogFragment() {
 
     private fun addTask() {
         val imageUri = uri
+        val isUri = uri != null
         val name = binding.etName.text.toString()
         val phone = convertToFormattedPhoneNumber(binding.etNumber.text.toString())
         val email = binding.etEmail.text.toString()
@@ -45,10 +47,11 @@ class AddDialog : DialogFragment() {
                 email = email,
                 imgResource = imageUri?.toString() ?: "",
                 bookmark = false,
-                isUri = true
+                isUri = isUri
             )
         )
 
+        Log.d("Contact", ContactList.list.toString())
     }
     private fun convertToFormattedPhoneNumber(number: String): String {
         return if (number.length == 11) {

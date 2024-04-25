@@ -45,7 +45,7 @@ class ContactListGridViewAdapter(private val contactList: List<Contact>) : BaseA
             if (data.isUri) {
                 val uri = Uri.parse(data.imgResource)
                 ivProfile1.setImageURI(uri)
-            } else if (data.imgResource != "") {
+            } else if (data.imgResource.trim().isNotEmpty()) {
                 ivProfile1.setImageResource(data.imgResource.toInt())
             } else {
                 ivProfile1.setImageResource(com.example.contact_refac.R.drawable.ic_user)
