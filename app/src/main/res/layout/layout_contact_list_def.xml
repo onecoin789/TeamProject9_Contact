@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/iv_profile_img"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/bg_contactfrag_trim"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/iv_bookmark"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:src="@drawable/slc_contactfrag_bookmark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

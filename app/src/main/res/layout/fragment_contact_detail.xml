@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/img_Detail_bookmark"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/slc_contactfrag_bookmark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

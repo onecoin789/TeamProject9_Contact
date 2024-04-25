@@ -74,6 +74,7 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
             }
             binding.tvName.text = contact.name
             binding.tvPhoneNum.text = contact.phoneNum
+            binding.ivProfileImg.clipToOutline = true
 
             val bookMark = binding.ivBookmark
             bookMark.isSelected = ContactList.list[position].bookmark
