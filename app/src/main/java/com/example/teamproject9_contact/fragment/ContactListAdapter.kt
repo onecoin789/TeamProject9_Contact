@@ -2,15 +2,14 @@ package com.example.teamproject9_contact.fragment
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.R
+import com.example.teamproject9_contact.data.ContactList
 import com.example.teamproject9_contact.databinding.LayoutContactListDefBinding
 
 class ContactListAdapter(private val contactList: MutableList<Contact>) :
@@ -32,12 +31,12 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        if (position % 2 == 1) holder.setBg(R.color.petal_light)
+        if (position % 2 == 1) holder.setBg()
 
         holder.layout.setOnClickListener {
             click?.clicked(it, position)
         }
-        holder.bind(contactList[position])
+        holder.bind(position)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -55,29 +54,32 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
     inner class ViewHolder(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-        fun setBg(color: Int) {
-            binding.layout.setBackgroundColor(
+
+        fun setBg() {
+            binding.layoutContact.setBackgroundColor(
                 ContextCompat.getColor(
-                    binding.layout.context,
-                    color
-                )
+                    binding.layoutContact.context,
+                    R.color.petal_light)
             )
         }
 
-        fun bind(info: Contact) {
-            if(info.isUri) {
-                val uri = Uri.parse(info.imgResource)
+        fun bind(position: Int) {
+            val contact = contactList[position]
+
+            if(contact.isUri) {
+                val uri = Uri.parse(contact.imgResource)
                 binding.ivProfileImg.setImageURI(uri)
             } else {
-                binding.ivProfileImg.setImageResource(info.imgResource.toInt())
+                binding.ivProfileImg.setImageResource(contact.imgResource.toInt())
             }
-            binding.tvName.text = info.name
-            binding.tvPhoneNum.text = info.phoneNum
+            binding.tvName.text = contact.name
+            binding.tvPhoneNum.text = contact.phoneNum
 
             val bookMark = binding.ivBookmark
-            bookMark.isSelected = info.bookmark
+            bookMark.isSelected = ContactList.list[position].bookmark
             bookMark.setOnClickListener {
                 bookMark.isSelected = bookMark.isSelected != true
+                ContactList.list[position].bookmark = ContactList.list[position].bookmark != true
             }
 
         }

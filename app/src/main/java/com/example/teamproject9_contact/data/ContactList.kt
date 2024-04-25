@@ -4,7 +4,7 @@ import com.example.teamproject9_contact.Contact
 import com.example.teamproject9_contact.R
 
 object ContactList {
-    val list = mutableListOf(
+    var list = mutableListOf(
         Contact("김채원", "010-1111-1111", "asdn123@naver.com", R.drawable.contact_image1.toString(), false, false),
         Contact("송강", "010-2222-2222", "asjnjnsa54@naver.com", R.drawable.contact_image2.toString(), false, false),
         Contact("김민정", "010-3333-3333", "nefjk56@naver.com", R.drawable.contact_image3.toString(), false, false),
