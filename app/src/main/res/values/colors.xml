@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="silver">#CCD3D9</color>
+    <color name="petal">#FED5D9</color>
+    <color name="petal_light">#FFE1E4</color>
+    <color name="blossom">#7E212C</color>
+    <color name="bark">#321E17</color>
+    <color name="gray">#CBD3DA</color>
+    <color name="callGreen">#008577</color>
+    <color name="messageBlue">#1976D2</color>
+
+</resources>

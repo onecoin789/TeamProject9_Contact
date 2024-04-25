@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.main.fragment.detailPage.DetailPageFragment">
+
+    <ImageView
+        android:id="@+id/iv_myImg"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image1"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_bookmark"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_contactfrag_star_str"
+        app:layout_constraintBottom_toBottomOf="@id/iv_myImg"
+        app:layout_constraintEnd_toEndOf="@id/iv_myImg"
+        android:layout_margin="15dp"
+        android:visibility="invisible"/>
+<!--name-->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="이름"
+        app:layout_constraintTop_toBottomOf="@id/iv_myImg"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/tv_myName"
+        app:layout_constraintBottom_toBottomOf="@id/tv_myName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_tv_mypage"/>
+
+    <TextView
+        android:id="@+id/tv_myName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:text="홍길동"/>
+
+<!--phone number-->
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="연락처"
+        app:layout_constraintTop_toBottomOf="@id/tv_myName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/tv_myNumber"
+        app:layout_constraintBottom_toBottomOf="@id/tv_myNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_tv_mypage"/>
+
+    <TextView
+        android:id="@+id/tv_myNumber"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_number"
+        app:layout_constraintStart_toStartOf="@id/tv_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:text="010-0000-0000"/>
+
+<!--email-->
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bark"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="이메일"
+        app:layout_constraintTop_toBottomOf="@id/tv_myNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/tv_myEmail"
+        app:layout_constraintBottom_toBottomOf="@id/tv_myEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_tv_mypage"/>
+
+    <TextView
+        android:id="@+id/tv_myEmail"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_email"
+        app:layout_constraintStart_toStartOf="@id/tv_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:padding="5dp"
+        android:text="aaaaaaa11@naver.com"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Detail_Call"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/petal"
+        android:src="@drawable/call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fb_Detail_edit"
+        app:fabCustomSize="60dp"
+        app:rippleColor="@color/blossom"
+        app:shapeAppearanceOverlay="@style/FabShape"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Detail_Send"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/petal"
+        android:src="@drawable/email"
+        app:layout_constraintStart_toEndOf="@+id/fb_Detail_Call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:rippleColor="@color/blossom"
+        app:fabCustomSize="60dp"
+        app:shapeAppearanceOverlay="@style/FabShape"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_Detail_edit"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/petal"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:rippleColor="@color/blossom"
+        app:fabCustomSize="60dp"
+        app:shapeAppearanceOverlay="@style/FabShape"
+        android:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
