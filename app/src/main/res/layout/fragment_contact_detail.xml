@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/blossom"
         app:titleTextColor="@color/white"
-        app:title="어쩌구저쩌구 앱"/>
+        app:title="Contact"/>
 
 
     <ImageView
@@ -48,16 +48,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@id/fb_Detail_Send"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_Detail_Title"
-        app:layout_constraintBottom_toTopOf="@+id/fb_Detail_Send">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -149,7 +149,7 @@
         android:backgroundTint="@color/blossom"
         android:src="@drawable/call"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:fabCustomSize="60dp"
         app:rippleColor="@color/petal"
         app:tint="@color/petal"
@@ -162,8 +162,9 @@
         android:layout_margin="20dp"
         android:backgroundTint="@color/blossom"
         android:src="@drawable/email"
-        app:layout_constraintStart_toEndOf="@+id/fb_Detail_Call"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/fb_Detail_Call"
+        app:layout_constraintEnd_toEndOf="@id/fb_Detail_Call"
+        app:layout_constraintBottom_toTopOf="@id/fb_Detail_Call"
         app:rippleColor="@color/petal"
         app:fabCustomSize="60dp"
         app:tint="@color/petal"

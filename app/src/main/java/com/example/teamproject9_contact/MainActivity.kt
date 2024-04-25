@@ -26,10 +26,14 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
     }
 
     private fun addContact() {
-        binding.fbMain.setOnClickListener {
+        binding.ivMain.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val addDialog = AddDialog()
             addDialog.show(fragmentManager, "AddDialog")
+
+            val myDialog = MyPageDialog()
+            myDialog.show(fragmentManager, "MyPageDialog")
+
         }
     }
 
@@ -72,21 +76,21 @@ class MainActivity : AppCompatActivity(), AddDialog.AddDialogListener, FragmentD
         binding.vpMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                binding.fbMain.setImageResource(
+                binding.ivMain.setImageResource(
                     when (position) {
                         0 -> R.drawable.add_user
-                        else -> R.drawable.call
+                        else -> R.drawable.modify
                     }
                 )
-                binding.fbMain.setOnClickListener {
+                binding.ivMain.setOnClickListener {
                     when (position) {
                         0 -> {
                             val dialog = AddDialog()
                             dialog.show(this@MainActivity.supportFragmentManager, "AddDialog")
                         }
                         else -> {
-                            val call = Uri.parse("tel:")
-                            startActivity(Intent(Intent.ACTION_DIAL, call))
+                           val dialog = MyPageDialog()
+                            dialog.show(this@MainActivity.supportFragmentManager, "MyPageDialog")
 
                         }
                     }

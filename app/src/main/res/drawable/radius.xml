@@ -7,5 +7,5 @@
     <corners
         android:radius="60dp" />
     <solid
-        android:color="@color/blossom" />
+        android:color="@color/petal" />
 </shape>
