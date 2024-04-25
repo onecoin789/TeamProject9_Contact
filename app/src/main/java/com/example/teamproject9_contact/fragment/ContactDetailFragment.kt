@@ -43,7 +43,15 @@ class ContactDetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
+
+        if(param1?.isUri == true) {
+            // 사용자에 의해 추가된 이미지(Uri)인 경우
+            val uri = Uri.parse(param1!!.imgResource)
+            imgDetailTitle.setImageURI(uri)
+        } else {
+            imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
+        }
+
         textDetailName.text = param1?.name
         textDetailPhoneNumber.text = param1?.phoneNum
         textDetailEmail.text = param1?.email
