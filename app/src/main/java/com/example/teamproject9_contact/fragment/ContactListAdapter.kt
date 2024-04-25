@@ -55,7 +55,6 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
     inner class ViewHolder(private val binding: LayoutContactListDefBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.layoutContact
-
         fun setBg(color: Int) {
             binding.layout.setBackgroundColor(
                 ContextCompat.getColor(
@@ -66,7 +65,12 @@ class ContactListAdapter(private val contactList: MutableList<Contact>) :
         }
 
         fun bind(info: Contact) {
-            binding.ivProfileImg.setImageResource(info.imgResource)
+            if(info.isUri) {
+                val uri = Uri.parse(info.imgResource)
+                binding.ivProfileImg.setImageURI(uri)
+            } else {
+                binding.ivProfileImg.setImageResource(info.imgResource.toInt())
+            }
             binding.tvName.text = info.name
             binding.tvPhoneNum.text = info.phoneNum
 
