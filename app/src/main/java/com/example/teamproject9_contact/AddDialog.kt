@@ -62,6 +62,7 @@ class AddDialog: DialogFragment() {
                         val inputStream = requireContext().contentResolver.openInputStream(uri!!)
                         val bitmap = BitmapFactory.decodeStream(inputStream)
                         binding.dialogImg.setImageBitmap(bitmap)
+                        binding.dialogImg.clipToOutline = true
                     }
                 }
             }

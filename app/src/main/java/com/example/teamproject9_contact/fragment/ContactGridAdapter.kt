@@ -27,6 +27,7 @@ class ContactGridAdapter(private val contactList: MutableList<Contact>) : BaseAd
         val contactView = inflater.inflate(R.layout.layout_contact_list_grid, null)
 
         contactView.findViewById<ImageView>(R.id.iv_profile_img).setImageResource(contact.imgResource.toInt())
+//        contactView.findViewById<ImageView>(R.id.iv_profile_img).clipToOutline = true
         contactView.findViewById<TextView>(R.id.tv_name).text = contact.name
         val bookMark = contactView.findViewById<ImageView>(R.id.iv_bookmark)
         bookMark.isSelected = ContactList.list[position].bookmark

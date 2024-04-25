@@ -43,6 +43,7 @@ class MyPageDialog : DialogFragment() {
                         val inputStream = requireContext().contentResolver.openInputStream(uri!!)
                         val bitmap = BitmapFactory.decodeStream(inputStream)
                         binding.ivMyDialog.setImageBitmap(bitmap)
+                        binding.ivMyDialog.clipToOutline = true
                     }
                 }
             }
@@ -163,16 +164,18 @@ class MyPageDialog : DialogFragment() {
         val name = binding.etMyName.text.toString()
         val email = binding.etMyEmail.text.toString()
         val number = binding.etMyPhoneNumber.text.toString()
-//        val uri = binding.ivMyDialog.setImageURI(uri)
+        val uri = uri
 
         val bundle1 = bundleOf("name" to name)
         val bundle2 = bundleOf("email" to email)
         val bundle3 = bundleOf("number" to number)
-//        val bundle4 = bundleOf("image" to uri)
+        val bundle4 = bundleOf("image" to uri.toString())
 
         setFragmentResult("name", bundle1)
         setFragmentResult("number", bundle3)
         setFragmentResult("email", bundle2)
-//        setFragmentResult("image", bundle4)
+        setFragmentResult("image", bundle4)
+
+        Log.d("to", "${uri}")
     }
 }

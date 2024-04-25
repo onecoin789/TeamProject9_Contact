@@ -46,10 +46,16 @@ class ContactDetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-        imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
         textDetailName.text = param1?.name
         textDetailPhoneNumber.text = param1?.phoneNum
         textDetailEmail.text = param1?.email
+
+        if (param1!!.isUri) {
+            val uri = Uri.parse(param1!!.imgResource)
+            binding.imgDetailTitle.setImageURI(uri)
+        } else {
+            binding.imgDetailTitle.setImageResource(param1!!.imgResource.toInt())
+        }
 
         imgDetailBookmark.isSelected = ContactList.list[param2!!].bookmark
         imgDetailBookmark.setOnClickListener {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.key
+import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import com.example.teamproject9_contact.databinding.FragmentMyPageBinding
@@ -62,10 +63,11 @@ class MyPageFragment : Fragment() {
             }
         }
 
-//        setFragmentResultListener("image") { key, bundle ->
-//            val image = bundle.getString("image")
-//                binding.imgMyPageTitle.setImageURI(bundle.getString("image"))
-//            }
+        setFragmentResultListener("image") { key, bundle ->
+            bundle.getString("image")?.let {
+                binding.imgMyPageTitle.setImageURI(bundle.getString("image")?.toUri())
+            }
+        }
 
 
         return binding.root
