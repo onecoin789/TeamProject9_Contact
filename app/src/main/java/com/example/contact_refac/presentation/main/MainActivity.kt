@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.contact_refac.R
 import com.example.contact_refac.data.Contact
 import com.example.contact_refac.data.ContactList
+import com.example.contact_refac.data.ContactListListener
 import com.example.contact_refac.data.EditProfileListener
 import com.example.contact_refac.databinding.ActivityMainBinding
 import com.example.contact_refac.presentation.main.fragment.addDialog.AddDialog
@@ -25,7 +26,7 @@ import com.example.contact_refac.presentation.main.fragment.detailPage.DetailPag
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val READ_CONTACTS_REQUEST_CODE = 101
-class MainActivity : AppCompatActivity(), EditProfileListener {
+class MainActivity : AppCompatActivity(), EditProfileListener, ContactListListener {
     private val binding: ActivityMainBinding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -173,4 +174,8 @@ class MainActivity : AppCompatActivity(), EditProfileListener {
                 }
             }
         }
+
+    override fun notifyDataChanged() {
+            ((binding.vpMain.adapter as MainViewPagerAdapter).fragments[0] as ContactListFragment).getList()
+    }
 }

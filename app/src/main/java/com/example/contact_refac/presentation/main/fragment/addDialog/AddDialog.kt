@@ -27,11 +27,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.DialogFragment
+import com.example.contact_refac.R
 import com.example.contact_refac.data.Contact
 import com.example.contact_refac.data.ContactList
+import com.example.contact_refac.data.ContactListListener
+import com.example.contact_refac.data.EditProfileListener
+import com.example.contact_refac.databinding.DialogAddContactBinding
 import com.example.contact_refac.presentation.main.MainActivity
-import com.example.teamproject9_contact.R
-import com.example.teamproject9_contact.databinding.DialogAddContactBinding
 
 class AddDialog : DialogFragment() {
     private val binding: DialogAddContactBinding by lazy {
@@ -43,9 +45,13 @@ class AddDialog : DialogFragment() {
 
     private val handler = Handler(Looper.getMainLooper())
     private val notificationId = 1
-
     private var uri: Uri? = null
+    private var listener: ContactListListener? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is ContactListListener) listener = context
+    }
     private fun addTask() {
         val imageUri = uri
         val isUri = uri != null
@@ -63,7 +69,7 @@ class AddDialog : DialogFragment() {
                 isUri = isUri
             )
         )
-
+        listener?.notifyDataChanged()
         Log.d("Contact", ContactList.list.toString())
     }
     private fun convertToFormattedPhoneNumber(number: String): String {
