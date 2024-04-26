@@ -1,13 +1,15 @@
 package com.example.contact_refac.presentation.main.fragment.contactList
 
-import android.animation.ObjectAnimator
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +18,10 @@ import com.example.contact_refac.data.ContactList
 import com.example.contact_refac.databinding.FragmentContactListBinding
 import com.example.contact_refac.presentation.main.fragment.addDialog.AddDialog
 
+
 class ContactListFragment : Fragment() {
     private lateinit var binding: FragmentContactListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -78,6 +82,7 @@ class ContactListFragment : Fragment() {
                 binding.recyclerView.adapter?.notifyDataSetChanged()
             }
 
+            //swipe 시 그려지는 부분
             override fun onChildDraw(
                 c: Canvas,
                 recyclerView: RecyclerView,
@@ -87,39 +92,56 @@ class ContactListFragment : Fragment() {
                 actionState: Int,
                 isCurrentlyActive: Boolean
             ) {
-                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
                 val itemView = viewHolder.itemView
+
                 with(itemView) {
                     if (dX > 0) { // 오른쪽으로 스와이프한 경우
-                        setBackgroundColor(ContextCompat.getColor(recyclerView.context, R.color.callGreen))
+                        val background = ColorDrawable()
+                        background.color = ContextCompat.getColor(binding.root.context, R.color.callGreen)
                         background.setBounds(
                             left,
-                            top,
-                            left + dX.toInt(),
-                            bottom
-                        )
-                    } else if (dX < 0) { // 왼쪽으로 스와이프한 경우
-                        setBackgroundColor(
-                            ContextCompat.getColor(
-                                recyclerView.context,
-                                R.color.messageBlue
-                            )
-                        )
-                        background.setBounds(
-                            right + dX.toInt(),
                             top,
                             right,
                             bottom
                         )
-                    } else{
-                        background.setBounds(0, 0, 0, 0)
+                        background.draw(c)
+                    } else if (dX < 0) { // 왼쪽으로 스와이프한 경우
+                        val background = ColorDrawable()
+                        background.color = ContextCompat.getColor(binding.root.context, R.color.messageBlue)
+                        background.setBounds(
+                            left,
+                            top,
+                            right,
+                            bottom
+                        )
+                        background.draw(c)
                     }
-                    background.draw(c)
                 }
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+    }
+
+
+    private fun drawSwipeBackground(c: Canvas, itemView: View, backgroundColor: Int) {
+        val backgroundPaint = Paint()
+        backgroundPaint.setColor(backgroundColor)
+        c.drawRect(
+            itemView.left.toFloat(),
+            itemView.top.toFloat(),
+            itemView.right.toFloat(),
+            itemView.bottom.toFloat(),
+            backgroundPaint
+        )
     }
 
     private fun addContact() {
