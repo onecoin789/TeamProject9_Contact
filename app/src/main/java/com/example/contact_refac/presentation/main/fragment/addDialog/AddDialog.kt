@@ -1,12 +1,20 @@
 package com.example.contact_refac.presentation.main.fragment.addDialog
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -16,20 +24,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.DialogFragment
-import com.example.contact_refac.R
 import com.example.contact_refac.data.Contact
 import com.example.contact_refac.data.ContactList
-import com.example.contact_refac.databinding.DialogAddContactBinding
+import com.example.contact_refac.presentation.main.MainActivity
+import com.example.teamproject9_contact.R
+import com.example.teamproject9_contact.databinding.DialogAddContactBinding
 
 class AddDialog : DialogFragment() {
-    private val data = ContactList.list
     private val binding: DialogAddContactBinding by lazy {
         DialogAddContactBinding.inflate(
             layoutInflater
         )
     }
     private lateinit var pictureLauncher: ActivityResultLauncher<Intent>
+
+    private val handler = Handler(Looper.getMainLooper())
+    private val notificationId = 1
 
     private var uri: Uri? = null
 
@@ -62,6 +75,49 @@ class AddDialog : DialogFragment() {
         } else {
             number
         }
+    }
+
+    private fun notification(name: String) {
+        val notificationManager =
+            binding.root.context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val intent = Intent(binding.root.context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            binding.root.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "channel_id",
+                "Channel Name",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!NotificationManagerCompat.from(requireContext()).areNotificationsEnabled()) {
+                // 알림 권한이 없다면, 사용자에게 권한 요청
+                val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                    putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
+                }
+                startActivity(intent)
+            }
+        }
+
+        val notification = NotificationCompat.Builder(binding.root.context, "channel_id")
+            .setContentTitle("어쩌고저쩌고 앱 알림")
+            .setContentText("$name 님에게 연락할 시간입니다!")
+            .setSmallIcon(R.drawable.call)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .build()
+
+        notificationManager.notify(notificationId, notification)
+    }
+
+    private fun cancelNotification(context: Context, notificationId: Int) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancel(notificationId)
     }
 
     override fun onCreateView(
@@ -185,6 +241,27 @@ class AddDialog : DialogFragment() {
             // 취소 버튼 클릭
             btnDialogCancel.setOnClickListener {
                 dismiss()
+            }
+
+            // 이벤트 알릶 클릭
+            dialogOffBtn.setOnClickListener {
+                cancelNotification(requireContext(), notificationId)
+                Toast.makeText(context,"설정한 알림을 모두 해제합니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            dialog5min.setOnClickListener {
+                handler.postDelayed({ notification("5분 뒤 알림") }, 50)
+                Toast.makeText(context,"${etName.text} 님께 5분 뒤 연락 알림 설정", Toast.LENGTH_SHORT).show()
+            }
+
+            dialog10min.setOnClickListener {
+                handler.postDelayed({ notification("10분 뒤 알림") }, 10000)
+                Toast.makeText(context,"${etName.text} 님께 10분 뒤 연락 알림 설정", Toast.LENGTH_SHORT).show()
+            }
+
+            dialog30min.setOnClickListener {
+                handler.postDelayed({ notification("30분 뒤 알림") }, 30000)
+                Toast.makeText(context,"${etName.text} 님께 30분 뒤 연락 알림 설정", Toast.LENGTH_SHORT).show()
             }
         }
         return binding.root
