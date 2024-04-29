@@ -1,4 +1,4 @@
-###MainActivity
+### MainActivity
 
 ![image](https://github.com/onecoin789/TeamProject9_Contact/assets/161268575/ece781e0-4891-41d0-87c3-95d8f0258bbb)
 
@@ -19,7 +19,7 @@
 
 - 프로필 추가시 알람 기능 추가 가능
 
-###DetailFragment
+### DetailFragment
 
 ![image (2)](https://github.com/onecoin789/TeamProject9_Contact/assets/161268575/91fa7117-a95a-4167-9a51-61c9740ae360)
 
@@ -31,7 +31,7 @@
 - 수정 가능 기능추가
 - 전화, 문자 기능추가
 
-###MyPageFragment
+### MyPageFragment
 
 ![image (9)](https://github.com/onecoin789/TeamProject9_Contact/assets/161268575/0837b6b5-37ba-4505-973d-796d88cb212e)
 
